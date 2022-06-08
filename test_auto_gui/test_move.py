@@ -14,6 +14,10 @@ def start_chrome():
     # 次の操作までのインターバル
     pyautogui.PAUSE = 1.7
     
+    # フェールセーフ機能有効
+    # 動作確認中、マウスを左上に移動することで「pyautogui」の処理が停止する
+    pyautogui.FAILSAFE = True
+    
     # ポップアップ
     pyautogui.alert(text="クロームがメインのディスプレイに表示されていることを確認してください",button="OK")
 
@@ -31,7 +35,9 @@ def start_chrome():
     # ペーストショートカットキー
     pyautogui.hotkey("ctrl","v")
     
-    active_window("Book1")
+    # Excelで新規ファイル作成したら、デフォルトの名前は「Book1」になる
+    # そのウィンドウがある状態で下記を実行すると、「Book1」はアクティブになる
+    # active_window("Book1")
 
     
 # メインのディスプレイ内でしか画像認識不可
