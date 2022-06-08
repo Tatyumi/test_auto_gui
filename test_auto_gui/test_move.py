@@ -18,27 +18,30 @@ def start_chrome():
     # 動作確認中、マウスを左上に移動することで「pyautogui」の処理が停止する
     pyautogui.FAILSAFE = True
     
-    # ポップアップ
-    pyautogui.alert(text="クロームがメインのディスプレイに表示されていることを確認してください",button="OK")
+    try:
+        # ポップアップ
+        pyautogui.alert(text="クロームがメインのディスプレイに表示されていることを確認してください",button="OK")
 
-    # 指定の画像までカーソル移動
-    move_cursor(chrome_icon)
-    
-    pyautogui.doubleClick()
-    
-    # クロームの起動待機時間
-    time.sleep(3)
-    
-    # 日本語文字入力に対応していないため、ペーストしたい文字を事前に準備
-    pyperclip.copy("ダブルクリックで起動しました")
-    
-    # ペーストショートカットキー
-    pyautogui.hotkey("ctrl","v")
-    
-    # Excelで新規ファイル作成したら、デフォルトの名前は「Book1」になる
-    # そのウィンドウがある状態で下記を実行すると、「Book1」はアクティブになる
-    # active_window("Book1")
-
+        # 指定の画像までカーソル移動
+        move_cursor(chrome_icon)
+        
+        pyautogui.doubleClick()
+        
+        # クロームの起動待機時間
+        time.sleep(3)
+        
+        # 日本語文字入力に対応していないため、ペーストしたい文字を事前に準備
+        pyperclip.copy("ダブルクリックで起動しました")
+        
+        # ペーストショートカットキー
+        pyautogui.hotkey("ctrl","v")
+        
+        # Excelで新規ファイル作成したら、デフォルトの名前は「Book1」になる
+        # そのウィンドウがある状態で下記を実行すると、「Book1」はアクティブになる
+        # active_window("Book1")
+        
+    except pyautogui.FailSafeException as ex:
+        print("フェールセーフ機能により終了しました")
     
 # メインのディスプレイ内でしか画像認識不可
 # ディスプレイ上に表示させていないと検知できない(重なっていると検知不可)
